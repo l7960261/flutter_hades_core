@@ -12,7 +12,8 @@ dependencies:
     sdk: flutter
   pointycastle: ^1.0.1
   hex: ^0.1.2
-  ed25519_hd_key: ^1.0.1
+  convert: ^2.1.1
+  fixnum: ^0.10.9
 
 dev_dependencies:
   flutter_test:

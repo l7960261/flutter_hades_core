@@ -1,4 +1,3 @@
-import "package:ed25519_hd_key/ed25519_hd_key.dart";
 import 'package:flutter_hades_core/flutter_hades_core.dart';
 
 class HadesKeys {
@@ -11,6 +10,6 @@ class HadesKeys {
 
   static String createPublicKey(String privateKey) {
     assert(HadesSeeds.isValidSeed(privateKey));
-    return HadesHelpers.byteToHex(ED25519_HD_KEY.getBublickKey(HadesHelpers.hexToBytes(privateKey)));
+    return HadesHelpers.byteToHex(Signature.keyPair_fromSecretKey(HadesHelpers.hexToBytes(privateKey)).publicKey);
   }
 }

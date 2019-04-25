@@ -14,7 +14,7 @@ class HadesBlocks {
         HadesHelpers.hexToBytes(HadesAccounts.extractPublicKey(representative));
     Uint8List balanceBytes = HadesHelpers.bigIntToBytes(balance);
     Uint8List linkBytes = HadesAccounts.isValid(accountType, link)
-        ? HadesAccounts.extractPublicKey(link)
+        ? HadesHelpers.hexToBytes(HadesAccounts.extractPublicKey(link))
         : HadesHelpers.hexToBytes(link);
     return HadesHelpers.byteToHex(Hashes.digest256([
       accountBytes,

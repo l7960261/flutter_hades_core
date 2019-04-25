@@ -16,16 +16,28 @@ class HadesAccounts {
         encodedCheckSum;
   }
 
+  static String findAccountInString(int accountType, String account){
+    assert(accountType == HadesAccountType.HADES || accountType == HadesAccountType.CHARON);
+    assert(account != null);
+    RegExp regex = RegExp(HadesAccountType.getRegex(accountType));
+    return regex.stringMatch(account);
+  }
+
   static isValid(int accountType, String account) {
     assert(accountType == HadesAccountType.HADES ||
         accountType == HadesAccountType.CHARON);
     assert(account != null);
-
-    if (!account.contains(RegExp(HadesAccountType.getRegex(accountType)))) {
+    RegExp regex = RegExp(HadesAccountType.getRegex(accountType));
+    if(!regex.hasMatch(account)){
       return false;
     }
     String expectedChecksum = account.substring(account.length - 8);
-    String encodedChecksum = calculatedEncodedCheckSum(extractPublicKey(account));
+    String encodedChecksum;
+    try {
+      encodedChecksum = calculatedEncodedCheckSum(extractPublicKey(account));
+    } catch (e) {
+      return false;
+    } 
     return expectedChecksum == encodedChecksum;
   }
 

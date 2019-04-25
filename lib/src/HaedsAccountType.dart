@@ -2,9 +2,9 @@ class HadesAccountType {
   static const int HADES = 1;
   static const int CHARON = 2;
   static const String HADES_REGEX =
-      r"^(hades_)[12346789abcdefghijlmnopqrstuwxyz]{60}$";
+      r"^(hades_)(_)(1|3)[12346789abcdefghijlmnopqrstuwxyz]{59}$";
   static const String CHARON_REGEX =
-      r"^(charon_)[12346789abcdefghijlmnopqrstuwxyz]{60}$";
+      r"^(charon_)(_)(1|3)[12346789abcdefghijlmnopqrstuwxyz]{59}$";
 
   static String getPerfix(int type) {
     switch (type) {
