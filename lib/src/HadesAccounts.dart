@@ -9,7 +9,7 @@ class HadesAccounts {
     assert(accountType == HadesAccountType.HADES ||
         accountType == HadesAccountType.CHARON);
     var binaryPubkey = HadesHelpers.hexToBinary(publicKey).padLeft(260, "0");
-    var encodedCheckSum = calculatedEncodedCheckSum(binaryPubkey);
+    var encodedCheckSum = calculatedEncodedCheckSum(publicKey);
     var encodedPubKey = encoder.encode(binaryPubkey);
     return HadesAccountType.getPerfix(accountType) +
         encodedPubKey +

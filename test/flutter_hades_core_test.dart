@@ -17,16 +17,13 @@ void main() {
   });
 
   test('test address from seed', () {
-    var privKey =
-        'F1D04E906C73280F46963D7AF34177F4CDB6F7143AFEA3C7791C017B5A1806A3';
-    expect(
-        HadesAccounts.createAccount(
-            HadesAccountType.HADES, HadesKeys.createPublicKey(privKey)),
-        'hades_3q3icy4adx7hk6idwhe36w6mak9bypau1mk568i5pmf4hod5u3ic9oxakzi6');
-    expect(
-        HadesAccounts.createAccount(
-            HadesAccountType.CHARON, HadesKeys.createPublicKey(privKey)),
-        'charon_3q3icy4adx7hk6idwhe36w6mak9bypau1mk568i5pmf4hod5u3ic9oxakzi6');
+    var privKey = '67EDBC8F904091738DF33B4B6917261DB91DD9002D3985A7BA090345264A46C6';
+    expect(HadesAccounts.createAccount(HadesAccountType.CHARON, 
+                                      HadesKeys.createPublicKey(privKey)),
+          'charon_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc');
+    expect(HadesAccounts.createAccount(HadesAccountType.HADES, 
+                                      HadesKeys.createPublicKey(privKey)),
+          'hades_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc');
   });
 
   test('test hex to byte array and back', () {
@@ -54,11 +51,11 @@ void main() {
   test('test address validation', () {
     expect(
         HadesAccounts.isValid(HadesAccountType.HADES,
-            'hades_3q3icy4adx7hk6idwhe36w6mak9bypau1mk568i5pmf4hod5u3ic9oxakzi6'),
+            'hades_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'),
         true);
     expect(
         HadesAccounts.isValid(HadesAccountType.CHARON,
-            'charon_3q3icy4adx7hk6idwhe36w6mak9bypau1mk568i5pmf4hod5u3ic9oxakzi6'),
+            'charon_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'),
         true);
   });
 
