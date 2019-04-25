@@ -1,6 +1,7 @@
 import 'dart:typed_data' show Uint8List;
 
 import 'package:pointycastle/digests/blake2b.dart';
+import 'package:flutter_hades_core/flutter_hades_core.dart';
 
 class Hashes {
   static const int DIGEST_256 = 256 ~/ 8;
@@ -25,6 +26,6 @@ class Hashes {
       ret[i] = byte;
       integer = (integer - byte) ~/ 256;
     }
-    return ret;
+    return HadesHelpers.reverse(ret);
   }
 }

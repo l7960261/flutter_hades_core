@@ -6,7 +6,7 @@ class HadesKeys {
     assert(HadesSeeds.isValidSeed(seed));
     assert(index >= 0);
     return HadesHelpers.byteToHex(Hashes.digest256(
-        [HadesHelpers.hexToByted(seed), Hashes.intToUint8List(index, 4)]));
+        [HadesHelpers.hexToByted(seed), Hashes.intToUint8List(index, 4)])).toUpperCase();
   }
 
   static String createPublicKey(String privateKey) {
