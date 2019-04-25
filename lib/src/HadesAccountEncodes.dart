@@ -1,12 +1,11 @@
 import 'dart:collection';
 
 class HadesAccountEncodes {
-  List<String> accountMap = '12346789abcdefghijlmnopqrstuwxyz'.split('');
-
   HashMap<String, String> characterTable = HashMap();
   HashMap<String, String> binaryTable = HashMap();
 
   HadesAccountEncodes() {
+    List<String> accountMap = '12346789abcdefghijlmnopqrstuwxyz'.split('');
     for (int i = 0; i < accountMap.length; i++) {
       String binary = i.toRadixString(2).padLeft(5, '0');
       characterTable[binary] = accountMap[i];
