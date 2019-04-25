@@ -6,6 +6,7 @@ class HadesAccounts {
   static HadesAccountEncodes encoder = HadesAccountEncodes();
 
   static String createAccount(int accountType, String publicKey) {
+    assert(accountType == HadesAccountType.HADES || accountType == HadesAccountType.CHARON);
     var binaryPubkey = HadesHelpers.hexToBinary(publicKey).padLeft(260, "0");
     var encodedCheckSum = calculatedEncodedCheckSum(binaryPubkey);
     var encodedPubKey = encoder.encode(binaryPubkey);
