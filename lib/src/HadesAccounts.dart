@@ -27,8 +27,11 @@ class HadesAccounts {
     assert(accountType == HadesAccountType.HADES ||
         accountType == HadesAccountType.CHARON);
     assert(account != null);
-    RegExp regex = RegExp(HadesAccountType.getRegex(accountType));
-    if(!regex.hasMatch(account)){
+    if (account == null) {
+      return false;
+    }
+    RegExp regEx = RegExp(HadesAccountType.getRegex(accountType));
+    if(!regEx.hasMatch(account)){
       return false;
     }
     String expectedChecksum = account.substring(account.length - 8);

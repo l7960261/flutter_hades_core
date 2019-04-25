@@ -6,42 +6,42 @@ void main() {
   test('test seed to private key', () {
     expect(
         HadesKeys.seedToPrivate(
-            'A3EE78A8220B62CEF0C174557320663B90CDF55E72262648169DFCCBA86F80D6',
+            'A155C07BEB14F714E199EEEFD6D124E0404115F27EE66A62FB6551EF93C8A0E7',
             0),
-        'B4D713926EA8C12DE86621A0EBCFE3E231BFC19ECB460A2B8BE9AE41B23F9221');
+        'F1D04E906C73280F46963D7AF34177F4CDB6F7143AFEA3C7791C017B5A1806A3');
     expect(
         HadesKeys.seedToPrivate(
-            '15D59C099F64110166DC7E7B070C9E02AB5AD2E733413C3469A97EAAF3B91B02',
+            'A155C07BEB14F714E199EEEFD6D124E0404115F27EE66A62FB6551EF93C8A0E7',
             1),
-        '2518DD9056E70009DBCAB6300F643D67931ECBD7AFD1FFB30A80C88E62C53F5B');
+        '43BB936DD02F1612A4BBBE8E0823D4EDF1207F1C75DC486BA35663622EA18265');
   });
 
   test('test address from seed', () {
     var privKey =
-        'B4D713926EA8C12DE86621A0EBCFE3E231BFC19ECB460A2B8BE9AE41B23F9221';
+        'F1D04E906C73280F46963D7AF34177F4CDB6F7143AFEA3C7791C017B5A1806A3';
     expect(
         HadesAccounts.createAccount(
             HadesAccountType.HADES, HadesKeys.createPublicKey(privKey)),
-        'hades_2c44pzzbpu3grpgi9d914d9z24dzwb9b9zefe2h8u2bi2xyudwm78zidrzbt');
+        'hades_3q3icy4adx7hk6idwhe36w6mak9bypau1mk568i5pmf4hod5u3ic9oxakzi6');
     expect(
         HadesAccounts.createAccount(
             HadesAccountType.CHARON, HadesKeys.createPublicKey(privKey)),
-        'charon_2c44pzzbpu3grpgi9d914d9z24dzwb9b9zefe2h8u2bi2xyudwm78zidrzbt');
+        'charon_3q3icy4adx7hk6idwhe36w6mak9bypau1mk568i5pmf4hod5u3ic9oxakzi6');
   });
 
   test('test hex to byte array and back', () {
     var hex =
-        'A663F1C07333F29C5533376B43D175DBF66C63EF075B3433F33E52BFA06D4C04';
+        'F1D04E906C73280F46963D7AF34177F4CDB6F7143AFEA3C7791C017B5A1806A3';
     var byteArray = HadesHelpers.hexToBytes(
-        'A663F1C07333F29C5533376B43D175DBF66C63EF075B3433F33E52BFA06D4C04');
+        'F1D04E906C73280F46963D7AF34177F4CDB6F7143AFEA3C7791C017B5A1806A3');
     expect(HadesHelpers.byteToHex(byteArray), hex);
   });
 
   test('test hex to binary and back', () {
     var hex =
-        '79534C10BAEE7937F4F6E344C7831E2B166A41CAECEE632E157FAAF0D2FD1247';
+        'F1D04E906C73280F46963D7AF34177F4CDB6F7143AFEA3C7791C017B5A1806A3';
     var binary = HadesHelpers.hexToBinary(
-        '79534C10BAEE7937F4F6E344C7831E2B166A41CAECEE632E157FAAF0D2FD1247');
+        'F1D04E906C73280F46963D7AF34177F4CDB6F7143AFEA3C7791C017B5A1806A3');
     expect(HadesHelpers.binaryToHex(binary), hex);
   });
 
@@ -54,7 +54,11 @@ void main() {
   test('test address validation', () {
     expect(
         HadesAccounts.isValid(HadesAccountType.HADES,
-            'hades_2c44pzzbpu3grpgi9d914d9z24dzwb9b9zefe2h8u2bi2xyudwm78zidrzbt'),
+            'hades_3q3icy4adx7hk6idwhe36w6mak9bypau1mk568i5pmf4hod5u3ic9oxakzi6'),
+        true);
+    expect(
+        HadesAccounts.isValid(HadesAccountType.CHARON,
+            'charon_3q3icy4adx7hk6idwhe36w6mak9bypau1mk568i5pmf4hod5u3ic9oxakzi6'),
         true);
   });
 

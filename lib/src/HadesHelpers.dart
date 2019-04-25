@@ -1,14 +1,10 @@
 import 'dart:typed_data' show Uint8List;
 import 'package:hex/hex.dart';
-import 'package:pointycastle/src/utils.dart';
 
 class HadesHelpers {
   static List<String> hexArray = '0123456789ABCDEF'.split('');
 
-  static String byteToHex(Uint8List bytes) {
-    return HEX.encode(bytes).toUpperCase();
-  }
-
+  /// Decode a BigInt from bytes in big-endian encoding.
   static BigInt _decodeBigInt(List<int> bytes) {
     BigInt result = new BigInt.from(0);
     for (int i = 0; i < bytes.length; i++) {
@@ -17,35 +13,39 @@ class HadesHelpers {
     return result;
   }
 
+  /// Converts a Uint8List to a hex string
+  static String byteToHex(Uint8List bytes) {
+    return HEX.encode(bytes).toUpperCase();
+  }
+
   static BigInt byteToBigInt(Uint8List bigIntBytes) {
     return _decodeBigInt(bigIntBytes);
   }
 
+  /// Converts a hex string to a Uint8List
   static Uint8List hexToBytes(String hex) {
     return Uint8List.fromList(HEX.decode(hex));
   }
 
-  static String hexToBinary(String hex) {
-    return BigInt.parse(hex, radix: 16).toRadixString(2);
-  }
-
+  /// Convert a bigint to a byte array
   static Uint8List bigIntToBytes(BigInt bigInt) {
     var asHex = bigInt.toRadixString(16).padLeft(32, "0");
     return hexToBytes(asHex);
   }
 
-  static void arraycopy(
-      List src, int srcPos, List dest, int destPos, int length) {
-    dest.setRange(destPos, length + destPos, src, srcPos);
+  /// Converts a hex string to a binary string
+  static String hexToBinary(String hex) {
+    return BigInt.parse(hex, radix: 16).toRadixString(2);
   }
 
+  /// Converts a binary string into a hex string
   static String binaryToHex(String binary) {
     return BigInt.parse(binary, radix: 2).toRadixString(16);
   }
 
   static Uint8List reverse(Uint8List bytes) {
-    Uint8List reversed = Uint8List(bytes.length);
-    for (var i = bytes.length; i > 0; i--) {
+    Uint8List reversed = new Uint8List(bytes.length);
+    for (int i = bytes.length; i > 0; i--) {
       reversed[bytes.length - i] = bytes[i - 1];
     }
     return reversed;
