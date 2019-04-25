@@ -58,9 +58,7 @@ class HadesAccounts {
   static String calculatedEncodedCheckSum(String publicKey) {
     Uint8List checksum = HadesHelpers.reverse(
         Hashes.digest(5, [HadesHelpers.hexToBytes(publicKey)]));
-    print('reversed');
     String binaryChecksum = HadesHelpers.hexToBinary(HadesHelpers.byteToHex(checksum)).padLeft(40, "0");
-    print('binned');
     return encoder.encode(binaryChecksum);
   }
 }

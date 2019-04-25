@@ -9,8 +9,16 @@ class HadesHelpers {
     return HEX.encode(bytes).toUpperCase();
   }
 
+  static BigInt _decodeBigInt(List<int> bytes) {
+    BigInt result = new BigInt.from(0);
+    for (int i = 0; i < bytes.length; i++) {
+      result += new BigInt.from(bytes[bytes.length - i - 1]) << (8 * i);
+    }
+    return result;
+  }
+
   static BigInt byteToBigInt(Uint8List bigIntBytes) {
-    return decodeBigInt(bigIntBytes);
+    return _decodeBigInt(bigIntBytes);
   }
 
   static Uint8List hexToBytes(String hex) {
