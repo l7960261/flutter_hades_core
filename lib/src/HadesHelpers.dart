@@ -5,7 +5,7 @@ class HadesHelpers {
   static List<String> hexArray = '0123456789ABCDEF'.split('');
 
   static String byteToHex(Uint8List bytes) {
-    return HEX.encode(bytes);
+    return HEX.encode(bytes).toUpperCase();
   }
 
   static Uint8List hexToByted(String hex) {

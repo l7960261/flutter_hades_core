@@ -29,4 +29,10 @@ void main() {
             HadesAccountType.CHARON, HadesKeys.createPublicKey(privKey)),
         'charon_1zflngs3cxdislhrs9824n4da6f621gaidhpqahyu2oxniz1gzxasjticcl9');
   });
+
+  test('test hex to byte array and back', () {
+    var initialPrivkey = '67EDBC8F904091738DF33B4B6917261DB91DD9002D3985A7BA090345264A46C6';
+    var byteKey = HadesHelpers.hexToByted('67EDBC8F904091738DF33B4B6917261DB91DD9002D3985A7BA090345264A46C6');
+    expect(HadesHelpers.byteToHex(byteKey), initialPrivkey);
+  });
 }
