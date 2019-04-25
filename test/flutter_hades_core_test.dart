@@ -4,7 +4,6 @@ import 'package:flutter_hades_core/flutter_hades_core.dart';
 
 void main() {
   test('test seed to private key', () {
-    print(HadesSeeds.generateSeed());
     expect(
         HadesKeys.seedToPrivate(
             'A3EE78A8220B62CEF0C174557320663B90CDF55E72262648169DFCCBA86F80D6',
