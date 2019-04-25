@@ -6,6 +6,8 @@ class HadesBlocks {
       String previous, String representative, BigInt balance, String link) {
     assert(accountType == HadesAccountType.HADES ||
         accountType == HadesAccountType.CHARON);
+    Uint8List statePreamble = HadesHelpers.hexToBytes(
+        "0000000000000000000000000000000000000000000000000000000000000006");
     Uint8List accountBytes =
         HadesHelpers.hexToBytes(HadesAccounts.extractEncodedPublicKey(account));
     Uint8List previousBytes =
@@ -17,11 +19,12 @@ class HadesBlocks {
         ? HadesHelpers.hexToBytes(HadesAccounts.extractPublicKey(link))
         : HadesHelpers.hexToBytes(link);
     return HadesHelpers.byteToHex(Hashes.digest256([
+      statePreamble,
       accountBytes,
       previousBytes,
       representativeBytes,
       balanceBytes,
       linkBytes
-    ]));
+    ])).toUpperCase();
   }
 }

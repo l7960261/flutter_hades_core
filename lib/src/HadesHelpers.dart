@@ -22,7 +22,18 @@ class HadesHelpers {
   }
 
   static Uint8List bigIntToBytes(BigInt bigInt) {
-    return encodeBigInt(bigInt);
+    var bytes = encodeBigInt(bigInt);
+    Uint8List tmp = new Uint8List(16);
+    int sourcePosition = bytes.length <= 16 ? 0 : 1;
+    int bytesLength = bytes.length <= 16 ? bytes.length : 16;
+    arraycopy(
+        bytes, sourcePosition, tmp, tmp.length - bytesLength, bytesLength);
+    return tmp;
+  }
+
+  static void arraycopy(
+      List src, int srcPos, List dest, int destPos, int length) {
+    dest.setRange(destPos, length + destPos, src, srcPos);
   }
 
   static String binaryToHex(String binary) {
@@ -36,10 +47,32 @@ class HadesHelpers {
     }
     return reversed;
   }
-  
+
   static bool isHexString(String input) {
-    var hexChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a',
-    'b', 'c', 'd', 'e', 'f', 'A', 'B', 'C', 'D', 'E', 'F'];
+    var hexChars = [
+      '0',
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      'a',
+      'b',
+      'c',
+      'd',
+      'e',
+      'f',
+      'A',
+      'B',
+      'C',
+      'D',
+      'E',
+      'F'
+    ];
     for (int i = 0; i < input.length; i++) {
       if (!hexChars.contains(input[i])) {
         return false;

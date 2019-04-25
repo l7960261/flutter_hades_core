@@ -23,11 +23,11 @@ void main() {
     expect(
         HadesAccounts.createAccount(
             HadesAccountType.HADES, HadesKeys.createPublicKey(privKey)),
-        'hades_2agqh7mjgo7xzzn4arrc9zbfjm81hwh49wgm3pgcy84nsass3xryswduezan');
+        'hades_2c44pzzbpu3grpgi9d914d9z24dzwb9b9zefe2h8u2bi2xyudwm78zidrzbt');
     expect(
         HadesAccounts.createAccount(
             HadesAccountType.CHARON, HadesKeys.createPublicKey(privKey)),
-        'charon_2agqh7mjgo7xzzn4arrc9zbfjm81hwh49wgm3pgcy84nsass3xryswduezan');
+        'charon_2c44pzzbpu3grpgi9d914d9z24dzwb9b9zefe2h8u2bi2xyudwm78zidrzbt');
   });
 
   test('test hex to byte array and back', () {
@@ -55,7 +55,7 @@ void main() {
   test('test address validation', () {
     expect(
         HadesAccounts.isValid(HadesAccountType.HADES,
-            'hades_2agqh7mjgo7xzzn4arrc9zbfjm81hwh49wgm3pgcy84nsass3xryswduezan'),
+            'hades_2c44pzzbpu3grpgi9d914d9z24dzwb9b9zefe2h8u2bi2xyudwm78zidrzbt'),
         true);
   });
 

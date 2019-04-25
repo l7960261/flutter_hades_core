@@ -12,14 +12,16 @@ class Hashes {
 
   static Uint8List digest(int digestSize, List<Uint8List> byteArrays) {
     var blake2b = Blake2bDigest(digestSize: digestSize);
-    byteArrays
-        .forEach((byteArray) => blake2b.update(byteArray, 0, byteArray.length));
+    byteArrays.forEach((byteArray) {
+      print('b2b ${HadesHelpers.byteToHex(byteArray)}');
+      blake2b.update(byteArray, 0, byteArray.length);
+    });
     Uint8List output = Uint8List(digestSize);
     blake2b.doFinal(output, 0);
     return output;
   }
 
-  static Uint8List intToUint8List(int integer,int length) {
+  static Uint8List intToUint8List(int integer, int length) {
     var ret = Uint8List(length);
     for (int i = 0; i < length; i++) {
       var byte = integer & 0xff;

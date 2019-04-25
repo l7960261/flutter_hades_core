@@ -10,6 +10,6 @@ class HadesKeys {
 
   static String createPublicKey(String privateKey) {
     assert(HadesSeeds.isValidSeed(privateKey));
-    return HadesHelpers.byteToHex(Signature.keyPair_fromSecretKey(HadesHelpers.hexToBytes(privateKey)).publicKey);
+    return HadesHelpers.byteToHex(RaiBlocks.pkFromSecret(HadesHelpers.hexToBytes(privateKey)));
   }
 }
