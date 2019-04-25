@@ -22,13 +22,8 @@ class HadesHelpers {
   }
 
   static Uint8List bigIntToBytes(BigInt bigInt) {
-    var bytes = encodeBigInt(bigInt);
-    Uint8List tmp = new Uint8List(16);
-    int sourcePosition = bytes.length <= 16 ? 0 : 1;
-    int bytesLength = bytes.length <= 16 ? bytes.length : 16;
-    arraycopy(
-        bytes, sourcePosition, tmp, tmp.length - bytesLength, bytesLength);
-    return tmp;
+    var asHex = bigInt.toRadixString(16).padLeft(32, "0");
+    return hexToBytes(asHex);
   }
 
   static void arraycopy(
