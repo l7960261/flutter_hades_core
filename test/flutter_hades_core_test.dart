@@ -17,13 +17,17 @@ void main() {
   });
 
   test('test address from seed', () {
-    var privKey = '67EDBC8F904091738DF33B4B6917261DB91DD9002D3985A7BA090345264A46C6';
-    expect(HadesAccounts.createAccount(HadesAccountType.CHARON, 
-                                      HadesKeys.createPublicKey(privKey)),
-          'charon_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc');
-    expect(HadesAccounts.createAccount(HadesAccountType.HADES, 
-                                      HadesKeys.createPublicKey(privKey)),
-          'hades_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc');
+    print(HadesAccounts.createAccount(HadesAccountType.HADES, HadesSeeds.generateSeed()));
+    var privKey =
+        '67EDBC8F904091738DF33B4B6917261DB91DD9002D3985A7BA090345264A46C6';
+    expect(
+        HadesAccounts.createAccount(
+            HadesAccountType.CHARON, HadesKeys.createPublicKey(privKey)),
+        'charon_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44929oouoturlggc');
+    expect(
+        HadesAccounts.createAccount(
+            HadesAccountType.HADES, HadesKeys.createPublicKey(privKey)),
+        'hades_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44929oouoturlggc');
   });
 
   test('test hex to byte array and back', () {
@@ -51,68 +55,68 @@ void main() {
   test('test address validation', () {
     expect(
         HadesAccounts.isValid(HadesAccountType.HADES,
-            'hades_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'),
+            'hades_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44929oouoturlggc'),
         true);
     expect(
         HadesAccounts.isValid(HadesAccountType.CHARON,
-            'charon_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44939oouoturkggc'),
+            'charon_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44929oouoturlggc'),
         true);
   });
 
   test('test state block hash computation', () {
+    // open state block
     var accountType = HadesAccountType.HADES;
     var account =
-        'xrb_1ak9nqn1m5u5ze4yr4rfm7rnwjny1qw96r46ncm88oiophz8yakdggfb6bo4';
-    var previous =
-        '3DA527883F4C39A1C7C312DEB55766E975B512544595D574347B5F04BF19413E';
+        'hades_2wgibta8rwsa2x5behdtyf1qhx8fpuujagqynh5ql912hff2i2o5gwmyp8hf';
+    var previous = '0';
     var representative =
-        'xrb_3rw4un6ys57hrb39sy1qx8qy5wukst1iiponztrz9qiz6qqa55kxzx4491or';
-    var balance = BigInt.parse('30109202700477890000000000000000000');
+        'hades_1ixulfpx1drp4cldqhng21jxbuhj62zjrxgwb2ot8om5eaqc51m7htf67j56';
+    var balance = BigInt.parse('1');
     var link =
-        'xrb_3ok55uirensct6yjq6j5w7k9w38hngubozjgi77cwsgaxuh9m9gkqek1f4yi';
+        '1EF0AD02257987B48030CC8D38511D3B2511672F33AF115AD09E18A86A8355A8';
     var calculatedHash = HadesBlocks.computeStateHash(
         accountType, account, previous, representative, balance, link);
     expect(calculatedHash,
-        '714DC230267C4E5A6BA0D61E6B90410C67D17F649A2752297E3115F12AEFBD9E');
+        'B04C55917E454C23FCC32F304C36F4ABF162D940903DCDC5018A98CF918906D3');
     // receive state block
     account =
-        'xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php';
+        'hades_2wgibta8rwsa2x5behdtyf1qhx8fpuujagqynh5ql912hff2i2o5gwmyp8hf';
     previous =
         'FC5A7FB777110A858052468D448B2DF22B648943C097C0608D1E2341007438B0';
     representative =
-        'xrb_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j';
+        'hades_1ixulfpx1drp4cldqhng21jxbuhj62zjrxgwb2ot8om5eaqc51m7htf67j56';
     balance = BigInt.parse('5000000000000000000000000000001');
     link = 'B2EC73C1F503F47E051AD72ECB512C63BA8E1A0ACC2CEE4EA9A22FE1CBDB693F';
     calculatedHash = HadesBlocks.computeStateHash(
         accountType, account, previous, representative, balance, link);
     expect(calculatedHash,
-        '597395E83BD04DF8EF30AF04234EAAFE0606A883CF4AEAD2DB8196AAF5C4444F');
+        '5E0E522F0F26937ECD1CF8EFD784C2B602E81509889B4D28E70B7AA457FCE6AE');
     // send state block
     account =
-        'xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php';
+        'hades_2wgibta8rwsa2x5behdtyf1qhx8fpuujagqynh5ql912hff2i2o5gwmyp8hf';
     previous =
         '597395E83BD04DF8EF30AF04234EAAFE0606A883CF4AEAD2DB8196AAF5C4444F';
     representative =
-        'xrb_3p1asma84n8k84joneka776q4egm5wwru3suho9wjsfyuem8j95b3c78nw8j';
+        'hades_1ixulfpx1drp4cldqhng21jxbuhj62zjrxgwb2ot8om5eaqc51m7htf67j56';
     balance = BigInt.parse('3000000000000000000000000000001');
-    link = 'xrb_1q3hqecaw15cjt7thbtxu3pbzr1eihtzzpzxguoc37bj1wc5ffoh7w74gi6p';
+    link = 'hades_1p95xji1g5gou8auj8h6qcuezpdpcyoqmawao6mpwj4p44929oouoturlggc';
     calculatedHash = HadesBlocks.computeStateHash(
         accountType, account, previous, representative, balance, link);
     expect(calculatedHash,
-        '128106287002E595F479ACD615C818117FCB3860EC112670557A2467386249D4');
+        'A4D596897B36679289B27E995B1179232DFEA5972333BB0672906C800FD778FE');
     // change state block
     account =
-        'xrb_3igf8hd4sjshoibbbkeitmgkp1o6ug4xads43j6e4gqkj5xk5o83j8ja9php';
+        'hades_2wgibta8rwsa2x5behdtyf1qhx8fpuujagqynh5ql912hff2i2o5gwmyp8hf';
     previous =
         '128106287002E595F479ACD615C818117FCB3860EC112670557A2467386249D4';
     representative =
-        'xrb_1anrzcuwe64rwxzcco8dkhpyxpi8kd7zsjc1oeimpc3ppca4mrjtwnqposrs';
+        'hades_171mzu1h7n6s8dxazhdb7ohsqtg8dz9n9tt8hba9jag5t85s9lm71mnzg8q2';
     balance = BigInt.parse('3000000000000000000000000000001');
     link = '0000000000000000000000000000000000000000000000000000000000000000';
     calculatedHash = HadesBlocks.computeStateHash(
         accountType, account, previous, representative, balance, link);
     expect(calculatedHash,
-        '2A322FD5ACAF50C057A8CF5200A000CF1193494C79C786B579E0B4A7D10E5A1E');
+        '6B458D76C30C820674A193E8C69762A302A3664D37B749B0EF680B06CC3F45BB');
   });
 
   test('test block signature', () {

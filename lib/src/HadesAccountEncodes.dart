@@ -5,7 +5,7 @@ class HadesAccountEncodes {
   HashMap<String, String> binaryTable = HashMap();
 
   HadesAccountEncodes() {
-    List<String> accountMap = '13456789abcdefghijkmnopqrstuwxyz'.split('');
+    List<String> accountMap = '12456789abcdefghijlmnopqrstuwxyz'.split('');
     for (int i = 0; i < accountMap.length; i++) {
       String binary = i.toRadixString(2).padLeft(5, '0');
       characterTable[binary] = accountMap[i];

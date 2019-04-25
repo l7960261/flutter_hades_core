@@ -9,7 +9,7 @@ class HadesBlocks {
     Uint8List statePreamble = HadesHelpers.hexToBytes(
         "0000000000000000000000000000000000000000000000000000000000000006");
     Uint8List accountBytes =
-        HadesHelpers.hexToBytes(HadesAccounts.extractEncodedPublicKey(account));
+        HadesHelpers.hexToBytes(HadesAccounts.extractPublicKey(account));
     Uint8List previousBytes =
         HadesHelpers.hexToBytes(previous.padLeft(64, "0"));
     Uint8List representativeBytes =
