@@ -1,5 +1,6 @@
 import 'dart:typed_data' show Uint8List;
 import 'package:hex/hex.dart';
+import 'package:pointycastle/src/utils.dart';
 
 class HadesHelpers {
   static List<String> hexArray = '0123456789ABCDEF'.split('');
@@ -8,12 +9,20 @@ class HadesHelpers {
     return HEX.encode(bytes).toUpperCase();
   }
 
+  static BigInt byteToBigInt(Uint8List bigIntBytes) {
+    return decodeBigInt(bigIntBytes);
+  }
+
   static Uint8List hexToBytes(String hex) {
     return Uint8List.fromList(HEX.decode(hex));
   }
 
   static String hexToBinary(String hex) {
     return BigInt.parse(hex, radix: 16).toRadixString(2);
+  }
+
+  static Uint8List bigIntToBytes(BigInt bigInt) {
+    return encodeBigInt(bigInt);
   }
 
   static String binaryToHex(String binary) {
