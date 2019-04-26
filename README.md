@@ -1,6 +1,6 @@
 # flutter_hades_core
 
-Low-level functions for NANO/BANANO written in DART. Similar structure to [jnano-commons](https://github.com/rotilho/jnano-commons) for Java
+Low-level functions for HADES/CHARON written in DART. Similar structure to [jnano-commons](https://github.com/rotilho/jnano-commons) for Java
 
 Examples:
 
