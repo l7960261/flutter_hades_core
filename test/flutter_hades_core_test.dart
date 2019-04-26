@@ -17,7 +17,6 @@ void main() {
   });
 
   test('test address from seed', () {
-    print(HadesAccounts.createAccount(HadesAccountType.HADES, HadesSeeds.generateSeed()));
     var privKey =
         '67EDBC8F904091738DF33B4B6917261DB91DD9002D3985A7BA090345264A46C6';
     expect(
